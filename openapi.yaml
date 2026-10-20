@@ -1,0 +1,150 @@
+openapi: 3.0.4
+info:
+  title: Sanctions Screening
+  description: >-
+    Sanctions Screening checks a person or company name against the US Treasury
+    OFAC Specially Designated Nationals (SDN) list. It returns scored matches
+    with aliases, dates of birth, addresses and sanctions programs so you can
+    decide whether to block or review.
+  termsOfService: https://apiverve.com/terms/
+  contact:
+    name: APIVerve Support
+    email: hello@apiverve.com
+    url: https://apiverve.com/contact
+  version: 1.0.0
+externalDocs:
+  description: Learn more about APIVerve
+  url: https://docs.apiverve.com?utm_source=openapi
+servers:
+  - url: https://api.apiverve.com/
+paths:
+  /v1/sanctionscreening:
+    get:
+      summary: Sanctions Screening
+      description: >-
+        Screen a person or company name against the OFAC Specially Designated
+        Nationals list. Returns scored matches, or an empty result set when the
+        name is clear.
+      operationId: sanctionscreening
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          required: true
+          description: The person or company name to screen (minimum 3 characters)
+          example: Banco Nacional de Cuba
+        - name: threshold
+          in: query
+          schema:
+            type: number
+          required: false
+          description: >-
+            Minimum match score to return, between 0.5 and 1. Lower catches more
+            names but returns more false positives
+          example: 0.85
+        - name: limit
+          in: query
+          schema:
+            type: number
+          required: false
+          description: Maximum number of matches to return (1-50)
+          example: 10
+        - name: type
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Restrict screening to one entry type
+          example: individual
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: status
+                  error:
+                    type: string
+                    description: error
+                  data:
+                    type: object
+                    description: data
+              example:
+                status: ok
+                error: null
+                data:
+                  query: Banco Nacional de Cuba
+                  matched: true
+                  matchCount: 1
+                  verdict: exact
+                  topScore: 1
+                  results:
+                    - uid: 306
+                      name: BANCO NACIONAL DE CUBA
+                      type: entity
+                      score: 1
+                      confidence: exact
+                      matchedOn: BANCO NACIONAL DE CUBA
+                      matchedVia: primary
+                      isWeakAlias: false
+                      programs:
+                        - CUBA
+                      title: null
+                      aka:
+                        - name: BNC
+                          type: aka
+                          strength: weak
+                        - name: NATIONAL BANK OF CUBA
+                          type: aka
+                          strength: strong
+                      dateOfBirth: []
+                      placeOfBirth: []
+                      nationalities: []
+                      citizenships: []
+                      addresses:
+                        - address1: Zweierstrasse 35
+                          city: Zurich
+                          postalCode: CH-8022
+                          country: Switzerland
+                        - address1: Avenida de Concha Espina 8
+                          city: Madrid
+                          postalCode: E-28036
+                          country: Spain
+                        - address1: >-
+                            Dai-Ichi Bldg. 6th Floor, 10-2 Nihombashi, 2-chome,
+                            Chuo-ku
+                          city: Tokyo
+                          postalCode: '103'
+                          country: Japan
+                        - address1: Federico Boyd Avenue & 51 Street
+                          city: Panama City
+                          country: Panama
+                      ids: []
+                      remarks: null
+                  list:
+                    source: OFAC SDN
+                    authority: >-
+                      US Department of the Treasury, Office of Foreign Assets
+                      Control
+                    publishDate: 07/15/2026
+                    recordCount: 19217
+                    lastUpdated: '2026-07-16T05:00:12.431Z'
+        '401':
+          description: Your request was not authorized, or your API Key was invalid
+        '404':
+          description: Requested resource was not found
+        '500':
+          description: A server error has occurred, try again later
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+security:
+  - api_key: []

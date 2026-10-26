@@ -15,7 +15,8 @@ async function callSanctionsScreeningAPI() {
   try {
     // Query parameters
     const params &#x3D; new URLSearchParams({
-            name: &#x27;Banco Nacional de Cuba&#x27;
+            name: &#x27;Banco Nacional de Cuba&#x27;,
+            lists: &#x27;ofac_sdn,un,eu,uk&#x27;
         });
 
     const response = await fetch(`${API_URL}?${params}`, {

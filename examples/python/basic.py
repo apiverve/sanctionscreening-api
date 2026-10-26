@@ -18,7 +18,7 @@ def call_sanctionscreening_api():
     """
     try:
         # Query parameters
-        params &#x3D; {&#x27;name&#x27;: &#x27;Banco Nacional de Cuba&#x27;}
+        params &#x3D; {&#x27;name&#x27;: &#x27;Banco Nacional de Cuba&#x27;, &#x27;lists&#x27;: &#x27;ofac_sdn,un,eu,uk&#x27;}
 
         headers = {
             'x-api-key': API_KEY

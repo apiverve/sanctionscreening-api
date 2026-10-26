@@ -2,10 +2,12 @@ openapi: 3.0.4
 info:
   title: Sanctions Screening
   description: >-
-    Sanctions Screening checks a person or company name against the US Treasury
-    OFAC Specially Designated Nationals (SDN) list. It returns scored matches
-    with aliases, dates of birth, addresses and sanctions programs so you can
-    decide whether to block or review.
+    Sanctions Screening is an OFAC API that checks a person, company or vessel
+    name against the US Treasury OFAC SDN and Consolidated lists, the UN
+    Security Council Consolidated List, the EU consolidated financial sanctions
+    list and the UK Sanctions List. It returns scored JSON matches with the list
+    each hit came from, aliases, dates of birth, addresses and sanctions
+    programs so you can decide whether to block or review.
   termsOfService: https://apiverve.com/terms/
   contact:
     name: APIVerve Support
@@ -22,9 +24,9 @@ paths:
     get:
       summary: Sanctions Screening
       description: >-
-        Screen a person or company name against the OFAC Specially Designated
-        Nationals list. Returns scored matches, or an empty result set when the
-        name is clear.
+        Screen a person, company or vessel name against the OFAC SDN, OFAC
+        Consolidated, UN, EU and UK sanctions lists. Returns scored matches with
+        the list each came from, or an empty result set when the name is clear.
       operationId: sanctionscreening
       parameters:
         - name: name
@@ -57,6 +59,15 @@ paths:
           required: false
           description: Restrict screening to one entry type
           example: individual
+        - name: lists
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Comma-separated list codes to screen (ofac_sdn, ofac_cons, un, eu,
+            uk). Omit to screen every list
+          example: ofac_sdn,un,eu,uk
       responses:
         '200':
           description: Successful Response
@@ -126,14 +137,56 @@ paths:
                           country: Panama
                       ids: []
                       remarks: null
+                      source: ofac_sdn
+                      sourceId: '306'
+                      listedOn: null
+                  matchedLists:
+                    - ofac_sdn
                   list:
                     source: OFAC SDN
                     authority: >-
                       US Department of the Treasury, Office of Foreign Assets
                       Control
-                    publishDate: 07/15/2026
-                    recordCount: 19217
-                    lastUpdated: '2026-07-16T05:00:12.431Z'
+                    publishDate: 10/21/2026
+                    recordCount: 19471
+                    lastUpdated: '2026-10-22T10:00:41.118Z'
+                  lists:
+                    - code: ofac_sdn
+                      source: OFAC SDN
+                      authority: >-
+                        US Department of the Treasury, Office of Foreign Assets
+                        Control
+                      publishDate: 10/21/2026
+                      recordCount: 19471
+                      lastUpdated: '2026-10-22T10:00:41.118Z'
+                    - code: ofac_cons
+                      source: OFAC Consolidated (non-SDN)
+                      authority: >-
+                        US Department of the Treasury, Office of Foreign Assets
+                        Control
+                      publishDate: 10/19/2026
+                      recordCount: 486
+                      lastUpdated: '2026-10-22T10:01:02.540Z'
+                    - code: un
+                      source: UN Security Council Consolidated List
+                      authority: United Nations Security Council
+                      publishDate: '2026-10-21'
+                      recordCount: 1010
+                      lastUpdated: '2026-10-22T10:01:09.876Z'
+                    - code: eu
+                      source: EU Consolidated Financial Sanctions List
+                      authority: >-
+                        European Union (European Commission, Financial Sanctions
+                        Files)
+                      publishDate: '2026-10-15'
+                      recordCount: 6234
+                      lastUpdated: '2026-10-22T10:01:31.204Z'
+                    - code: uk
+                      source: UK Sanctions List
+                      authority: UK Foreign, Commonwealth & Development Office
+                      publishDate: '2026-10-16'
+                      recordCount: 6408
+                      lastUpdated: '2026-10-22T10:01:52.663Z'
         '401':
           description: Your request was not authorized, or your API Key was invalid
         '404':

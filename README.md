@@ -1,6 +1,6 @@
 # [Sanctions Screening API](https://apiverve.com/marketplace/sanctionscreening?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 
-Sanctions Screening checks a person or company name against the US Treasury OFAC Specially Designated Nationals (SDN) list. It returns scored matches with aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.
+Sanctions Screening is an OFAC API that checks a person, company or vessel name against the US Treasury OFAC SDN and Consolidated lists, the UN Security Council Consolidated List, the EU consolidated financial sanctions list and the UK Sanctions List. It returns scored JSON matches with the list each hit came from, aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.
 
 The Sanctions Screening API provides a simple, reliable way to integrate sanctions screening functionality into your applications. Built for developers who need production-ready sanctions screening capabilities without the complexity of building from scratch.
 
@@ -31,7 +31,8 @@ The Sanctions Screening API provides a simple, reliable way to integrate sanctio
 async function callSanctionsScreeningAPI() {
     try {
         const params = new URLSearchParams({
-            name: 'Banco Nacional de Cuba'
+            name: 'Banco Nacional de Cuba',
+            lists: 'ofac_sdn,un,eu,uk'
         });
 
         const response = await fetch(`https://api.apiverve.com/v1/sanctionscreening?${params}`, {
@@ -54,7 +55,7 @@ callSanctionsScreeningAPI();
 ### Using cURL
 
 ```bash
-curl -X GET "https://api.apiverve.com/v1/sanctionscreening?name=Banco%20Nacional%20de%20Cuba" \
+curl -X GET "https://api.apiverve.com/v1/sanctionscreening?name=Banco%20Nacional%20de%20Cuba&lists=ofac_sdn%2Cun%2Ceu%2Cuk" \
   -H "x-api-key: YOUR_API_KEY_HERE"
 ```
 
@@ -272,16 +273,64 @@ A real response from the Sanctions Screening API:
           }
         ],
         "ids": [],
-        "remarks": null
+        "remarks": null,
+        "source": "ofac_sdn",
+        "sourceId": "306",
+        "listedOn": null
       }
+    ],
+    "matchedLists": [
+      "ofac_sdn"
     ],
     "list": {
       "source": "OFAC SDN",
       "authority": "US Department of the Treasury, Office of Foreign Assets Control",
-      "publishDate": "07/15/2026",
-      "recordCount": 19217,
-      "lastUpdated": "2026-07-16T05:00:12.431Z"
-    }
+      "publishDate": "10/21/2026",
+      "recordCount": 19471,
+      "lastUpdated": "2026-10-22T10:00:41.118Z"
+    },
+    "lists": [
+      {
+        "code": "ofac_sdn",
+        "source": "OFAC SDN",
+        "authority": "US Department of the Treasury, Office of Foreign Assets Control",
+        "publishDate": "10/21/2026",
+        "recordCount": 19471,
+        "lastUpdated": "2026-10-22T10:00:41.118Z"
+      },
+      {
+        "code": "ofac_cons",
+        "source": "OFAC Consolidated (non-SDN)",
+        "authority": "US Department of the Treasury, Office of Foreign Assets Control",
+        "publishDate": "10/19/2026",
+        "recordCount": 486,
+        "lastUpdated": "2026-10-22T10:01:02.540Z"
+      },
+      {
+        "code": "un",
+        "source": "UN Security Council Consolidated List",
+        "authority": "United Nations Security Council",
+        "publishDate": "2026-10-21",
+        "recordCount": 1010,
+        "lastUpdated": "2026-10-22T10:01:09.876Z"
+      },
+      {
+        "code": "eu",
+        "source": "EU Consolidated Financial Sanctions List",
+        "authority": "European Union (European Commission, Financial Sanctions Files)",
+        "publishDate": "2026-10-15",
+        "recordCount": 6234,
+        "lastUpdated": "2026-10-22T10:01:31.204Z"
+      },
+      {
+        "code": "uk",
+        "source": "UK Sanctions List",
+        "authority": "UK Foreign, Commonwealth & Development Office",
+        "publishDate": "2026-10-16",
+        "recordCount": 6408,
+        "lastUpdated": "2026-10-22T10:01:52.663Z"
+      }
+    ]
   }
 }
 ```

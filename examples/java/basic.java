@@ -15,6 +15,7 @@ public class BasicExample {
             // Query parameters
             Map&lt;String, Object&gt; parameters &#x3D; new HashMap&lt;&gt;();
         parameters.put(&quot;name&quot;, &quot;Banco Nacional de Cuba&quot;);
+        parameters.put(&quot;lists&quot;, &quot;ofac_sdn,un,eu,uk&quot;);
 
             // Execute the API request
             APIResponse response = client.execute(parameters);

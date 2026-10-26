@@ -30,7 +30,7 @@ class sanctionscreeningWrapper {
         this.baseURL = 'https://api.apiverve.com/v1/sanctionscreening';
 
         // Validation rules for parameters (generated from schema)
-        this.validationRules = {"name":{"type":"string","required":true},"threshold":{"type":"number","required":false,"default":0.85},"limit":{"type":"number","required":false,"default":10},"type":{"type":"string","required":false}};
+        this.validationRules = {"name":{"type":"string","required":true},"threshold":{"type":"number","required":false,"default":0.85},"limit":{"type":"number","required":false,"default":10},"type":{"type":"string","required":false},"lists":{"type":"string","required":false}};
     }
 
     /**

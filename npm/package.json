@@ -1,7 +1,7 @@
 {
   "name": "@apiverve/sanctionscreening",
-  "version": "1.2.2",
-  "description": "Sanctions Screening checks a person or company name against the US Treasury OFAC Specially Designated Nationals (SDN) list. It returns scored matches with aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.",
+  "version": "1.2.3",
+  "description": "Sanctions Screening is an OFAC API that checks a person, company or vessel name against the US Treasury OFAC SDN and Consolidated lists, the UN Security Council Consolidated List, the EU consolidated financial sanctions list and the UK Sanctions List. It returns scored JSON matches with the list each hit came from, aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -23,7 +23,7 @@
     "directory": "npm"
   },
   "keywords": [
-    "ofac api", "sanctions screening api", "ofac sanctions list api", "ofac check api", "ofac search api"
+    "ofac api", "sanctions screening api", "ofac check api", "un sanctions list api", "eu sanctions list api"
   ],
   "author": {
     "name": "APIVerve",

@@ -18,7 +18,8 @@ var query = {
   name: "Banco Nacional de Cuba",
   threshold: 0.85,
   limit: 10,
-  type: "individual"
+  type: "individual",
+  lists: "ofac_sdn,un,eu,uk"
 };
 
 // Make the API request using callback

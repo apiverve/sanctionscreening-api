@@ -25,13 +25,15 @@ declare module '@apiverve/sanctionscreening' {
 
 
   interface SanctionsScreeningData {
-      query:      null | string;
-      matched:    boolean | null;
-      matchCount: number | null;
-      verdict:    null | string;
-      topScore:   number | null;
-      results:    Result[];
-      list:       List;
+      query:        null | string;
+      matched:      boolean | null;
+      matchCount:   number | null;
+      verdict:      null | string;
+      topScore:     number | null;
+      results:      Result[];
+      matchedLists: (null | string)[];
+      list:         List;
+      lists:        List[];
   }
   
   interface List {
@@ -40,6 +42,7 @@ declare module '@apiverve/sanctionscreening' {
       publishDate: null | string;
       recordCount: number | null;
       lastUpdated: Date | null;
+      code?:       null | string;
   }
   
   interface Result {
@@ -61,6 +64,9 @@ declare module '@apiverve/sanctionscreening' {
       addresses:     Address[];
       ids:           any[];
       remarks:       null;
+      source:        null | string;
+      sourceID:      null | string;
+      listedOn:      null;
   }
   
   interface Address {

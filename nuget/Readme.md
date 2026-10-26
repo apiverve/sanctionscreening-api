@@ -1,7 +1,7 @@
 Sanctions Screening API
 ============
 
-Sanctions Screening checks a person or company name against the US Treasury OFAC Specially Designated Nationals (SDN) list. It returns scored matches with aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.
+Sanctions Screening is an OFAC API that checks a person, company or vessel name against the US Treasury OFAC SDN and Consolidated lists, the UN Security Council Consolidated List, the EU consolidated financial sanctions list and the UK Sanctions List. It returns scored JSON matches with the list each hit came from, aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.
 
 
 [![NuGet version](https://img.shields.io/nuget/v/APIVerve.API.SanctionsScreening.svg)](https://www.nuget.org/packages/APIVerve.API.SanctionsScreening)
@@ -63,7 +63,8 @@ class Program
             Name = "Banco Nacional de Cuba",
             Threshold = 0.85,
             Limit = 10,
-            Type = "individual"
+            Type = "individual",
+            Lists = "ofac_sdn,un,eu,uk"
         };
 
         // Make the API call
@@ -130,7 +131,8 @@ public class Example
             Name = "Banco Nacional de Cuba",
             Threshold = 0.85,
             Limit = 10,
-            Type = "individual"
+            Type = "individual",
+            Lists = "ofac_sdn,un,eu,uk"
         };
 
         var response = await apiClient.ExecuteAsync(queryOptions);
@@ -165,7 +167,8 @@ public class Example
             Name = "Banco Nacional de Cuba",
             Threshold = 0.85,
             Limit = 10,
-            Type = "individual"
+            Type = "individual",
+            Lists = "ofac_sdn,un,eu,uk"
         };
 
         var response = apiClient.Execute(queryOptions);
@@ -205,7 +208,8 @@ public class Example
             Name = "Banco Nacional de Cuba",
             Threshold = 0.85,
             Limit = 10,
-            Type = "individual"
+            Type = "individual",
+            Lists = "ofac_sdn,un,eu,uk"
         };
 
         try
@@ -264,7 +268,8 @@ public class Example
             Name = "Banco Nacional de Cuba",
             Threshold = 0.85,
             Limit = 10,
-            Type = "individual"
+            Type = "individual",
+            Lists = "ofac_sdn,un,eu,uk"
         };
 
         try
@@ -308,7 +313,8 @@ var queryOptions = new SanctionsScreeningQueryOptions {
     Name = "Banco Nacional de Cuba",
     Threshold = 0.85,
     Limit = 10,
-    Type = "individual"
+    Type = "individual",
+    Lists = "ofac_sdn,un,eu,uk"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -337,7 +343,8 @@ var queryOptions = new SanctionsScreeningQueryOptions {
     Name = "Banco Nacional de Cuba",
     Threshold = 0.85,
     Limit = 10,
-    Type = "individual"
+    Type = "individual",
+    Lists = "ofac_sdn,un,eu,uk"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -358,7 +365,8 @@ var queryOptions = new SanctionsScreeningQueryOptions {
     Name = "Banco Nacional de Cuba",
     Threshold = 0.85,
     Limit = 10,
-    Type = "individual"
+    Type = "individual",
+    Lists = "ofac_sdn,un,eu,uk"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -373,7 +381,8 @@ var queryOptions = new SanctionsScreeningQueryOptions {
     Name = "Banco Nacional de Cuba",
     Threshold = 0.85,
     Limit = 10,
-    Type = "individual"
+    Type = "individual",
+    Lists = "ofac_sdn,un,eu,uk"
 };
 
 using (var apiClient = new SanctionsScreeningAPIClient("[YOUR_API_KEY]"))
@@ -454,16 +463,64 @@ using (var apiClient = new SanctionsScreeningAPIClient("[YOUR_API_KEY]"))
           }
         ],
         "ids": [],
-        "remarks": null
+        "remarks": null,
+        "source": "ofac_sdn",
+        "sourceId": "306",
+        "listedOn": null
       }
+    ],
+    "matchedLists": [
+      "ofac_sdn"
     ],
     "list": {
       "source": "OFAC SDN",
       "authority": "US Department of the Treasury, Office of Foreign Assets Control",
-      "publishDate": "07/15/2026",
-      "recordCount": 19217,
-      "lastUpdated": "2026-07-16T05:00:12.431Z"
-    }
+      "publishDate": "10/21/2026",
+      "recordCount": 19471,
+      "lastUpdated": "2026-10-22T10:00:41.118Z"
+    },
+    "lists": [
+      {
+        "code": "ofac_sdn",
+        "source": "OFAC SDN",
+        "authority": "US Department of the Treasury, Office of Foreign Assets Control",
+        "publishDate": "10/21/2026",
+        "recordCount": 19471,
+        "lastUpdated": "2026-10-22T10:00:41.118Z"
+      },
+      {
+        "code": "ofac_cons",
+        "source": "OFAC Consolidated (non-SDN)",
+        "authority": "US Department of the Treasury, Office of Foreign Assets Control",
+        "publishDate": "10/19/2026",
+        "recordCount": 486,
+        "lastUpdated": "2026-10-22T10:01:02.540Z"
+      },
+      {
+        "code": "un",
+        "source": "UN Security Council Consolidated List",
+        "authority": "United Nations Security Council",
+        "publishDate": "2026-10-21",
+        "recordCount": 1010,
+        "lastUpdated": "2026-10-22T10:01:09.876Z"
+      },
+      {
+        "code": "eu",
+        "source": "EU Consolidated Financial Sanctions List",
+        "authority": "European Union (European Commission, Financial Sanctions Files)",
+        "publishDate": "2026-10-15",
+        "recordCount": 6234,
+        "lastUpdated": "2026-10-22T10:01:31.204Z"
+      },
+      {
+        "code": "uk",
+        "source": "UK Sanctions List",
+        "authority": "UK Foreign, Commonwealth & Development Office",
+        "publishDate": "2026-10-16",
+        "recordCount": 6408,
+        "lastUpdated": "2026-10-22T10:01:52.663Z"
+      }
+    ]
   }
 }
 ```

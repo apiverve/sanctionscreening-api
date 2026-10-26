@@ -33,5 +33,11 @@ namespace APIVerve.API.SanctionsScreening
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Comma-separated list codes to screen (ofac_sdn, ofac_cons, un, eu, uk). Omit to screen every list
+        /// </summary>
+        [JsonProperty("lists")]
+        public string Lists { get; set; }
     }
 }

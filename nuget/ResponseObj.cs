@@ -50,8 +50,14 @@ namespace APIVerve.API.SanctionsScreening
         [JsonProperty("results")]
         public Result[] Results { get; set; }
 
+        [JsonProperty("matchedLists")]
+        public string[] MatchedLists { get; set; }
+
         [JsonProperty("list")]
         public List List { get; set; }
+
+        [JsonProperty("lists")]
+        public List[] Lists { get; set; }
     }
 
     public partial class List
@@ -70,6 +76,9 @@ namespace APIVerve.API.SanctionsScreening
 
         [JsonProperty("lastUpdated")]
         public DateTimeOffset? LastUpdated { get; set; }
+
+        [JsonProperty("code")]
+        public string Code { get; set; }
     }
 
     public partial class Result
@@ -127,6 +136,15 @@ namespace APIVerve.API.SanctionsScreening
 
         [JsonProperty("remarks")]
         public object Remarks { get; set; }
+
+        [JsonProperty("source")]
+        public string Source { get; set; }
+
+        [JsonProperty("sourceId")]
+        public long? SourceId { get; set; }
+
+        [JsonProperty("listedOn")]
+        public object ListedOn { get; set; }
     }
 
     public partial class Address

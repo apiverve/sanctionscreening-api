@@ -70,7 +70,8 @@ namespace APIVerve.API.SanctionsScreening
             { "name", new ValidationRule { Type = "string", Required = true } },
             { "threshold", new ValidationRule { Type = "number", Required = false } },
             { "limit", new ValidationRule { Type = "number", Required = false } },
-            { "type", new ValidationRule { Type = "string", Required = false } }
+            { "type", new ValidationRule { Type = "string", Required = false } },
+            { "lists", new ValidationRule { Type = "string", Required = false } }
         };
 
         /// <summary>Format validation patterns</summary>

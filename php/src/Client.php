@@ -15,7 +15,7 @@ use APIVerve\Sanctionscreening\Exceptions\ValidationException;
  * @example Basic usage
  * ```php
  * $client = new Client('your_api_key');
- * $response = $client->execute(['name' => 'Banco Nacional de Cuba', 'threshold' => 0.85, 'limit' => 10, 'type' => 'individual']);
+ * $response = $client->execute(['name' => 'Banco Nacional de Cuba', 'threshold' => 0.85, 'limit' => 10, 'type' => 'individual', 'lists' => 'ofac_sdn,un,eu,uk']);
  * print_r($response);
  * ```
  *
@@ -37,7 +37,8 @@ class Client
         'name' => ['type' => 'string', 'required' => true],
         'threshold' => ['type' => 'number', 'required' => false],
         'limit' => ['type' => 'number', 'required' => false],
-        'type' => ['type' => 'string', 'required' => false]
+        'type' => ['type' => 'string', 'required' => false],
+        'lists' => ['type' => 'string', 'required' => false]
     ];
 
     /**

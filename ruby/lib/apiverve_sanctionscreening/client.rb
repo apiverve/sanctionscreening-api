@@ -10,7 +10,7 @@ module APIVerve
     #
     # @example Basic usage
     #   client = APIVerve::Sanctionscreening::Client.new(api_key: "your_api_key")
-    #   response = client.execute({ name: "Banco Nacional de Cuba", threshold: 0.85, limit: 10, type: "individual" })
+    #   response = client.execute({ name: "Banco Nacional de Cuba", threshold: 0.85, limit: 10, type: "individual", lists: "ofac_sdn,un,eu,uk" })
     #   puts response
     #
     # @see https://apiverve.com/marketplace/sanctionscreening?utm_source=ruby&utm_medium=referral&utm_content=readme
@@ -19,7 +19,7 @@ module APIVerve
       DEFAULT_TIMEOUT = 30
 
       # Validation rules for parameters
-      VALIDATION_RULES = { 'name' => { type: 'string', required: true }, 'threshold' => { type: 'number', required: false }, 'limit' => { type: 'number', required: false }, 'type' => { type: 'string', required: false } }
+      VALIDATION_RULES = { 'name' => { type: 'string', required: true }, 'threshold' => { type: 'number', required: false }, 'limit' => { type: 'number', required: false }, 'type' => { type: 'string', required: false }, 'lists' => { type: 'string', required: false } }
 
       # Format validation patterns
       FORMAT_PATTERNS = {

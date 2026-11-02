@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "apiverve_sanctionscreening"
-  spec.version       = "1.2.2"
+  spec.version       = "1.2.4"
   spec.authors       = ["APIVerve"]
   spec.email         = ["hello@apiverve.com"]
 
   spec.summary       = "Sanctions Screening API - Ruby Client"
-  spec.description   = "Sanctions Screening checks a person or company name against the US Treasury OFAC Specially Designated Nationals (SDN) list. It returns scored matches with aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review."
+  spec.description   = "Sanctions Screening is an OFAC API that checks a person, company or vessel name against the US Treasury OFAC SDN and Consolidated lists, the UN Security Council Consolidated List, the EU consolidated financial sanctions list and the UK Sanctions List. It returns scored JSON matches with the list each hit came from, aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review."
   spec.homepage      = "https://apiverve.com/marketplace/sanctionscreening?utm_source=ruby&utm_medium=referral&utm_content=homepage"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.7.0"

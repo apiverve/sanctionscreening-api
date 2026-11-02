@@ -1,7 +1,7 @@
 {
     "name": "apiverve/sanctionscreening",
     "description": "Sanctions Screening is an OFAC API that checks a person, company or vessel name against the US Treasury OFAC SDN and Consolidated lists, the UN Security Council Consolidated List, the EU consolidated financial sanctions list and the UK Sanctions List. It returns scored JSON matches with the list each hit came from, aliases, dates of birth, addresses and sanctions programs so you can decide whether to block or review.",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "type": "library",
     "license": "MIT",
     "authors": [

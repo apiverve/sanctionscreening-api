@@ -67,7 +67,7 @@ namespace APIVerve.API.SanctionsScreening
         /// <summary>Validation rules for parameters</summary>
         private static readonly Dictionary<string, ValidationRule> _validationRules = new Dictionary<string, ValidationRule>
         {
-            { "name", new ValidationRule { Type = "string", Required = true } },
+            { "name", new ValidationRule { Type = "string", Required = true, MaxLength = 300 } },
             { "threshold", new ValidationRule { Type = "number", Required = false } },
             { "limit", new ValidationRule { Type = "number", Required = false } },
             { "type", new ValidationRule { Type = "string", Required = false } },
